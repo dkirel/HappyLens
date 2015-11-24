@@ -1,0 +1,75 @@
+/* Color Palette */
+/* Document properties */
+/* Main title */
+#main-title {
+  padding: 10px;
+  font-size: 20px;
+  font-weight: bold;
+  float: left;
+}
+/* Main navigation bar */
+#main-nav {
+  float: right;
+}
+#main-nav ul {
+  list-style-type: none;
+  margin: 0 0 0 0;
+  padding-right: 10px;
+  float: right;
+}
+#main-nav ul li {
+  padding: 15px;
+  float: left;
+  display: inline;
+  font-size: 16px;
+  font-family: "Trebuchet MS", Helvetica, sans-serif;
+}
+#main-nav ul li:hover {
+  background: none;
+}
+#main-nav ul li a {
+  padding: 0;
+  display: block;
+  text-decoration: none;
+  background: none;
+  background-color: none;
+}
+#main-nav ul li a:hover {
+  background: none;
+  background-color: none;
+}
+#main-nav ul li ul li {
+  float: none;
+  padding: 0;
+}
+#main-nav ul li .open > a:hover {
+  background: black;
+}
+/* Dropdown caret */
+.side-by-side {
+  display: inline-block;
+}
+.dropdown-caret {
+  position: absolute !important;
+  top: 13px;
+  right: 0;
+}
+#project-menu {
+  padding-right: 20px;
+}
+/* Project tag */
+.project_tag {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  margin: 0 0 0 0;
+  padding: 5px;
+  background-color: black;
+  color: white;
+  font-family: "Raleway";
+  font-style: normal;
+  font-size: 150%;
+  font-weight: 200;
+  display: block;
+  text-decoration: none;
+}

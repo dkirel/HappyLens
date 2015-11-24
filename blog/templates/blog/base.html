@@ -1,0 +1,119 @@
+{% load bootstrap %}
+{% load compress %}
+
+{% block doc %}
+<!DOCTYPE html>
+<html{% block html_attribs %}{% endblock html_attribs %}>
+{% block html %}
+  <head>
+    {% block head %}
+    <title>{% block title %}{% endblock title %}</title>
+
+    {% block metas %}
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% endblock metas %}
+
+    {% block styles %}
+
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"
+            integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css"
+            integrity="sha384-aUGj/X2zp5rLCbBxumKTCw2Z50WgIr1vs/PFN4praOTvYXWlVyh2UtNUU0KAUhAX" crossorigin="anonymous">
+
+        <!-- Bootstrap Dropdown Hover CSS -->
+        <link href="{{ STATIC_URL }}lib/bootstrap-dropdown-hover/css/animate.min.css" rel="stylesheet">
+        <link href="{{ STATIC_URL }}lib/bootstrap-dropdown-hover/css/bootstrap-dropdownhover.min.css" rel="stylesheet">
+
+        <!-- Deck.js CSS-->
+        <link rel="stylesheet" media="all" href="{{ STATIC_URL }}lib/deck.js/core/deck.core.css" type="text/css">
+        <link rel="stylesheet" media="all" href="{{ STATIC_URL }}lib/deck.js/extensions/menu/deck.menu.css" type="text/css">
+        <link rel="stylesheet" media="all" href="{{ STATIC_URL }}lib/deck.js/extensions/goto/deck.goto.css" type="text/css">
+        <link rel="stylesheet" media="all" href="{{ STATIC_URL }}lib/deck.js/extensions/status/deck.status.css" type="text/css">
+        <link rel="stylesheet" media="all" href="{{ STATIC_URL }}lib/deck.js/extensions/navigation/deck.navigation.css" type="text/css">
+        <link rel="stylesheet" media="all" href="{{ STATIC_URL }}lib/deck.js/extensions/scale/deck.scale.css" type="text/css">
+
+        <link rel="stylesheet" media="all" href="{{ STATIC_URL }}lib/deck.js/themes/style/web-2.0.css">
+        <link rel="stylesheet" media="print" href="{{ STATIC_URL }}lib/deck.js/core/print.css">
+
+        <script src="{{ STATIC_URL }}lib/deck.js/modernizr.custom.js"></script>
+
+
+        <!-- Base LESS -->
+        {% if debug %}
+            <link href="{{ STATIC_URL }}less/base.less" media="all" rel="stylesheet/less" type="text/css"/>
+            <script src="{{ STATIC_URL }}js/less-1.3.0.min.js"></script>
+        {% else %}
+            {% compress css %}
+                <link href="{{ STATIC_URL }}less/base.less" media="all" rel="stylesheet" type="text/less"/>
+            {% endcompress %}
+        {% endif %}
+
+    {% endblock styles %}
+    {% endblock head %}
+  </head>
+  <body{% block body_attribs %}{% endblock body_attribs %}>
+    {% block body %}
+    {% block navbar %}
+
+        <p id="main-title">SENSEI COLLECTION</p>
+
+        <!--Main navigation bar-->
+        <div class="collapse navbar-collapse" id="main-nav" data-hover="dropdown" data-animations="fadeIn fadeIn fadeIn fadeIn">
+            <ul class="nav navbar-nav">
+            	<li class="dropdown">
+                    <a href="/blog/index" id="project-menu">Projects</a>
+                    <a href="/blog/index" class="dropdown-toggle dropdown-caret" data-toggle="dropdown" aria-expanded="false" ><span class="caret"></span></a>
+
+                    <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+                        {% for p in projects %}
+                            <li><a href="/blog/project/{{ p.name }}">{{ p.name }}</a></li>
+                        {% endfor %}
+                    </ul>
+                </li>
+            	<li><a href="#">About</a></li>
+            	<li><a href="#">Contact</a></li>
+            	<li><a href="#"></a></li>
+            	<li><a href="#"></a></li>
+            	<li><a href="#"></a></li>
+            </ul>
+        </div>
+
+    {% endblock navbar %}
+
+    {% block content %}{% endblock content %}
+
+    {% block scripts %}
+
+        <!-- jQuery and Bootstrap -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"
+            integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==" crossorigin="anonymous">
+        </script>
+
+        <!-- Bootstrap Dropdown Hover JS -->
+        <script src="{{ STATIC_URL }}lib/bootstrap-dropdown-hover/js/bootstrap-dropdownhover.min.js"></script>
+
+        <!-- Deck.js JS-->
+        <script src="{{ STATIC_URL }}lib/deck.js/core/deck.core.js"></script>
+        <script src="{{ STATIC_URL }}lib/deck.js/extensions/menu/deck.menu.js"></script>
+        <script src="{{ STATIC_URL }}lib/deck.js/extensions/goto/deck.goto.js"></script>
+        <script src="{{ STATIC_URL }}lib/deck.js/extensions/status/deck.status.js"></script>
+        <script src="{{ STATIC_URL }}lib/deck.js/extensions/navigation/deck.navigation.js"></script>
+        <script src="{{ STATIC_URL }}lib/deck.js/extensions/scale/deck.scale.js"></script>
+
+        <script>
+            $(function() {
+              $.deck('.slide');
+            });
+        </script>
+
+        <!-- Base JS -->
+        <script src="{{ STATIC_URL }}js/base.js"></script>
+
+    {% endblock scripts %}
+    {% endblock body %}
+  </body>
+{% endblock html %}
+</html>
+{% endblock doc %}

@@ -1,5 +1,3 @@
-from settings_secret import *
-
 """
 Django settings for photoblog project.
 
@@ -12,12 +10,23 @@ https://docs.djangoproject.com/en/1.6/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
+import sys
+
+from mongoengine import register_connection
+
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
+
+project_main = u'/home/dk2459/photoblog/photoblog'
+if project_main not in sys.path:
+    sys.path.append(project_main)
+
+from settings_secret import *
 
 
 TEMPLATE_DIRS = (
     BASE_DIR + '/templates/',
     BASE_DIR + '/acct/templates/',
+    BASE_DIR + '/blog/templates/',
 )
 
 # List of callables that know how to import templates from various sources.
@@ -50,6 +59,10 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'bootstrapform',
+    'crispy_forms',
+    'compressor',
+    'blog'
 )
 
 MIDDLEWARE_CLASSES = (
@@ -61,20 +74,33 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
+CONTEXT_PROCESSORS = (
+    'django.core.context_processors.csrf'
+)
+
 ROOT_URLCONF = 'photoblog.urls'
 
 WSGI_APPLICATION = 'photoblog.wsgi.application'
 
 
+STATICFILES_FINDERS = (
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    # other finders..
+    'compressor.finders.CompressorFinder',
+)
+
+COMPRESS_PRECOMPILERS = (
+    ('text/coffeescript', 'coffee --compile --stdio'),
+    ('text/less', 'lessc {infile} {outfile}'),
+    ('text/x-sass', 'sass {infile} {outfile}'),
+    ('text/x-scss', 'sass --scss {infile} {outfile}'),
+    ('text/stylus', 'stylus < {infile} > {outfile}'),
+    ('text/foobar', 'path.to.MyPrecompilerFilter'),
+)
+
 # Database
 # https://docs.djangoproject.com/en/1.6/ref/settings/#databases
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
-}
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.6/topics/i18n/
@@ -94,3 +120,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.6/howto/static-files/
 
 STATIC_URL = '/static/'
+
+STATIC_ROOT = u'/home/dk2459/photoblog/static'
+#COMPRESS_ROOT = u'/home/dk2459/photoblog/static/compress'
+

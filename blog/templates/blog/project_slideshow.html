@@ -1,0 +1,61 @@
+{% extends "blog/base.html" %}
+{% load bootstrap %}
+{% load compress %}
+
+
+{% block title %}{{ project }}{% endblock %}
+
+{% block styles %}
+
+    {{ block.super }}
+
+    <!-- Slide Horizontal Browse CSS -->
+    <link rel="stylesheet" media="screen" href="{{ STATIC_URL }}lib/deck.js/themes/transition/horizontal-slide.css">
+
+    <!-- Blog CSS -->
+    {% if debug %}
+        <link href="{{ STATIC_URL }}less/project.less" media="all" rel="stylesheet/less" type="text/css"/>
+        <script src="{{ STATIC_URL }}js/less-1.3.0.min.js"></script>
+    {% else %}
+        {% compress css %}
+            <link href="{{ STATIC_URL }}less/project.less" media="all" rel="stylesheet" type="text/less"/>
+        {% endcompress %}
+    {% endif %}
+
+{% endblock %}
+
+
+{% block content %}
+
+    <div class="deck-container">
+        {% for pic in photos %}
+            <section class="slide" id="{{ pic.image_name }}">
+                <image class="fit-box" src="{{ pic.image_path }}">
+             </section>
+        {% endfor %}
+    </div>
+
+    <!-- deck.navigation snippet -->
+    <div aria-role="navigation">
+        <a href="#" class="deck-prev-link" title="Previous" style="font-size:200%;">&#8592;</a>
+        <a href="#" class="deck-next-link" title="Next" style="font-size:200%;">&#8594;</a>
+    </div>
+
+    <!-- deck.status snippet -->
+    <p class="deck-status" aria-role="status">
+      <span class="deck-status-current"></span>
+      /
+      <span class="deck-status-total"></span>
+    </p>
+
+{% endblock %}
+
+
+{% block scripts %}
+
+    {{ block.super }}
+
+    <!-- Blog JS -->
+    <script src="{{ STATIC_URL }}js/project.js"></script>
+
+{% endblock%}

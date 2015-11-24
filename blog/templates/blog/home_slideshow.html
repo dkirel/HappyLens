@@ -1,0 +1,71 @@
+{% extends "blog/base.html" %}
+{% load bootstrap %}
+{% load compress %}
+
+
+{% block title %}Home{% endblock %}
+
+{% block styles %}
+
+    {{ block.super }}
+
+    <!-- Slide Fade CSS -->
+    <link rel="stylesheet" media="screen" href="{{ STATIC_URL }}lib/deck.js/themes/transition/fade.css">
+
+    <!-- Blog CSS -->
+    {% if debug %}
+        <link href="{{ STATIC_URL }}less/home.less" media="all" rel="stylesheet/less" type="text/css"/>
+        <script src="{{ STATIC_URL }}js/less-1.3.0.min.js"></script>
+    {% else %}
+        {% compress css %}
+            <link href="{{ STATIC_URL }}less/home.less" media="all" rel="stylesheet" type="text/less"/>
+        {% endcompress %}
+    {% endif %}
+
+{% endblock %}
+
+
+{% block content %}
+
+    <div class="deck-container">
+        {% for pic in photos %}
+            <section class="slide" id="{{ pic.image_name }}">
+                <image src="{{ pic.image_path }}">
+                <a class="project_tag" href="/blog/project/{{ pic.project }}">Project / {{pic.project}}</a>
+             </section>
+        {% endfor %}
+    </div>
+
+    <!-- deck.navigation snippet -->
+    <div aria-role="navigation">
+        <a href="#" class="deck-prev-link" title="Previous" style="font-size:200%;">&#8592;</a>
+        <a href="#" class="deck-next-link" title="Next" style="font-size:200%;">&#8594;</a>
+    </div>
+
+    <!-- deck.status snippet -->
+    <p class="deck-status" aria-role="status">
+      <span class="deck-status-current"></span>
+      /
+      <span class="deck-status-total"></span>
+    </p>
+
+{% endblock %}
+
+
+{% block scripts %}
+
+    {{ block.super }}
+
+    <!-- Blog JS -->
+    {# <script src="{{ STATIC_URL }}js/home.js"></script> #}
+
+    <script>
+        $('image').each(function(i, img) {
+            if (img.height()/img.width() > $(document).height()/$(document).width())
+                img.addClass("fill-width");
+            else
+                img.addClass("fill-height");
+        });
+    </script>
+
+{% endblock%}

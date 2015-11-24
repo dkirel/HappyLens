@@ -1,0 +1,32 @@
+/* Color Palette */
+/* Document properties */
+/* Main title */
+#main-title {
+  padding: 10px;
+  font-size: 20px;
+  font-weight: bold;
+  float: left;
+}
+/* Account navigation bar */
+#main-nav {
+  float: right;
+}
+#main-nav ul {
+  display: inline-block;
+  list-style-type: none;
+  margin: 0;
+  padding-right: 10px;
+  overflow: hidden;
+  float: left;
+}
+#main-nav ul li {
+  float: left;
+  display: inline;
+  padding-right: 10px;
+  font-size: 16px;
+  font-family: "Trebuchet MS", Helvetica, sans-serif;
+}
+#main-nav ul li a {
+  display: block;
+  text-decoration: none;
+}

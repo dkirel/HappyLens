@@ -1,0 +1,7 @@
+.deck-container {
+  margin: auto;
+  width: 80%;
+  top: 50%;
+  z-index: -1;
+  padding: 0;
+}

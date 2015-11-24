@@ -1,13 +1,11 @@
 from mongoengine import *
 
-from models import User
+from photoblog.blog.models import Project
 
-connect('happy_lens')
+connect('happy_lens', host='mongodb://dk2459:hhopolo9@ds049854.mongolab.com:49854/happy_lens')
 
-email = raw_input('Email: ')
-username = raw_input('Username: ')
-password = getpass.getpass()
+project_name = raw_input('Project Name: ')
+project = Project(name=project_name)
 
-admin = User(username=username, email=email, password=password)
-print 'Successfully created admin user {username}!'
+print('Successfully created admin user {project_name}!'.format(project_name=project_name))
 

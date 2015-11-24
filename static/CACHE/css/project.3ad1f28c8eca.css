@@ -1,0 +1,25 @@
+html,
+body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+}
+.deck-container {
+  position: absolute;
+  margin: auto;
+  width: 100%;
+  min-height: 0;
+  height: 60%;
+  top: 20%;
+  z-index: -1;
+  padding: 0;
+  background: none;
+  background-color: none;
+}
+section {
+  height: 100%;
+}
+.fit-box {
+  height: 100%;
+  width: auto;
+}
