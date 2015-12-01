@@ -27,26 +27,39 @@
 
 {% block content %}
 
-    <div class="deck-container">
+    <div id="toggle-visibility">
+        <div class="deck-container">
+            {% for pic in photos %}
+                <section class="slide" id="{{ pic.image_name }}">
+                    <image class="slide-image" src="{{ pic.image_path }}">
+                 </section>
+            {% endfor %}
+        </div>
+
+        <!-- deck.navigation snippet -->
+        <div aria-role="navigation">
+            <a href="#" class="deck-prev-link" title="Previous">&#8592;</a>
+            <a href="#" class="deck-next-link" title="Next">&#8594;</a>
+        </div>
+
+        <!-- deck.status snippet -->
+        <p class="deck-status" aria-role="status">
+          <span class="deck-status-current"></span>
+          /
+          <span class="deck-status-total"></span>
+        </p>
+
+        <!-- Exit slideshow button -->
+        <a href="#" class="exit-deck">x</a>
+    </div>
+
+    <div class="grid">
         {% for pic in photos %}
-            <section class="slide" id="{{ pic.image_name }}">
-                <image class="fit-box" src="{{ pic.image_path }}">
-             </section>
+            <div class="grid-item" id="{{ pic.image_name }}">
+                <image class="fit-box" style="cursor: pointer;" src="{{ pic.image_path }}">
+             </div>
         {% endfor %}
     </div>
-
-    <!-- deck.navigation snippet -->
-    <div aria-role="navigation">
-        <a href="#" class="deck-prev-link" title="Previous" style="font-size:200%;">&#8592;</a>
-        <a href="#" class="deck-next-link" title="Next" style="font-size:200%;">&#8594;</a>
-    </div>
-
-    <!-- deck.status snippet -->
-    <p class="deck-status" aria-role="status">
-      <span class="deck-status-current"></span>
-      /
-      <span class="deck-status-total"></span>
-    </p>
 
 {% endblock %}
 
@@ -55,7 +68,11 @@
 
     {{ block.super }}
 
-    <!-- Blog JS -->
+    <!-- External JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/3.2.0/imagesloaded.pkgd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/masonry/3.3.2/masonry.pkgd.min.js"></script>
+
+    <!-- Project JS -->
     <script src="{{ STATIC_URL }}js/project.js"></script>
 
 {% endblock%}

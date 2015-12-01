@@ -1,4 +1,6 @@
-@height: 60%;
+@import "color_palette.less";
+@leftRightMargin: 5%;
+@topSlideMargin: 10%;
 
 html, body {
     height: 100%;
@@ -6,22 +8,26 @@ html, body {
     margin: 0;
 }
 
+#toggle-visibility {
+    display: none;
+}
+
 .deck-container {
     position: absolute;
-    margin: auto;
+    margin: 0 auto;
     width: 100%;
-    min-height: 0;
-    height: @height;
-    top: (100% - @height)/2;
-    z-index: -1;
+    height: 100%;
+    z-index: 2;
     padding: 0;
     background: none;
-    background-color: none;
-
+    background-color: @light_gray;
 }
 
 section {
-    height: 100%;
+    min-height: 90%;
+    min-width: 90%;
+    height: auto;
+    width: auto;
 }
 
 .deck-slide-scaler {
@@ -29,7 +35,51 @@ section {
     height: 100%;
 }
 
-.fit-box {
-    height: 100%;
+.slide-image {
+    position: absolute;
+    top: @topSlideMargin;
+    height: 100% - 2*@topSlideMargin;
     width: auto;
+    left: 0;
+    right: 0;
+    margin: auto;
+}
+
+.exit-deck {
+    position: absolute;
+    top: @topSlideMargin;
+    right: @leftRightMargin;
+    font-stretch: condensed;
+    padding: 5px 10px 5px 10px;
+    background-color: black;
+    color: white;
+    font-size: 20px;
+    z-index: 2;
+    text-decoration: none;
+
+    &:hover {
+        text-decoration: none;
+    }
+
+    &:visited {
+        color: white;
+    }
+}
+
+.grid {
+    top: 15%;
+    margin-left: @leftRightMargin;
+    margin-right: @leftRightMargin;
+    width: 100% - 2*@leftRightMargin;
+    padding: 0;
+}
+
+.deck-next-link {
+    right: 0;
+    margin-right: 5%;
+}
+
+.deck-prev-link {
+    left: 0;
+    margin-left: 5%;
 }

@@ -1,0 +1,70 @@
+/* Color Palette */
+html,
+body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+}
+#toggle-visibility {
+  display: none;
+}
+.deck-container {
+  position: absolute;
+  margin: 0 auto;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  padding: 0;
+  background: none;
+  background-color: #ededed;
+}
+section {
+  min-height: 90%;
+  min-width: 90%;
+  height: auto;
+  width: auto;
+}
+.deck-slide-scaler {
+  width: 100%;
+  height: 100%;
+}
+.slide-image {
+  position: absolute;
+  top: 10%;
+  height: 80%;
+  width: auto;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+.exit-deck {
+  position: absolute;
+  top: 10%;
+  right: 5%;
+  font-stretch: condensed;
+  padding: 5px 10px 5px 10px;
+  background-color: black;
+  color: white;
+  font-size: 20px;
+  z-index: 2;
+  text-decoration: none;
+}
+.exit-deck:hover {
+  text-decoration: none;
+}
+.exit-deck:visited {
+  color: white;
+}
+.grid {
+  top: 15%;
+  margin-left: 5%;
+  margin-right: 5%;
+  width: 90%;
+  padding: 0;
+}
+.deck-next-link {
+  margin-right: 0;
+}
+.deck-prev-link {
+  margin-left: 0;
+}

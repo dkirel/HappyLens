@@ -27,27 +27,29 @@
 
 {% block content %}
 
-    <div class="deck-container">
+    <div class="deck-container" style="z-index: 1">
+
         {% for pic in photos %}
-            <section class="slide" id="{{ pic.image_name }}">
-                <image src="{{ pic.image_path }}">
-                <a class="project_tag" href="/blog/project/{{ pic.project }}">Project / {{pic.project}}</a>
+            <section class="slide" style="padding: 0; z-index: -1" id="{{ pic.image_name }}">
+                <image class="fill-box" src="{{ pic.image_path }}">
+                <a class="project_tag" style="z-index: 3; color: white;" href="/blog/project/{{ pic.project }}">Project / {{pic.project}}</a>
              </section>
         {% endfor %}
-    </div>
 
-    <!-- deck.navigation snippet -->
-    <div aria-role="navigation">
-        <a href="#" class="deck-prev-link" title="Previous" style="font-size:200%;">&#8592;</a>
-        <a href="#" class="deck-next-link" title="Next" style="font-size:200%;">&#8594;</a>
-    </div>
+        <!-- deck.navigation snippet -->
+        <div aria-role="navigation">
+            <a href="#" class="deck-prev-link" title="Previous" style="z-index: 10;">&#8592;</a>
+            <a href="#" class="deck-next-link" title="Next" style="z-index: 10;">&#8594;</a>
+        </div>
 
-    <!-- deck.status snippet -->
-    <p class="deck-status" aria-role="status">
-      <span class="deck-status-current"></span>
-      /
-      <span class="deck-status-total"></span>
-    </p>
+        <!-- deck.status snippet -->
+        <p class="deck-status" aria-role="status">
+            <span class="deck-status-current"></span>
+            /
+            <span class="deck-status-total"></span>
+        </p>
+
+    </div>
 
 {% endblock %}
 

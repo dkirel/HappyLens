@@ -1,0 +1,26 @@
+.deck-container {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  z-index: -1;
+  min-height: 100%;
+  min-width: 100%;
+  margin: 0 0 0 0;
+  padding: 0;
+}
+.deck-slide-scaler {
+  width: 100%;
+  height: 100%;
+}
+.fill-box {
+  min-height: 100%;
+  min-width: 100%;
+  width: auto;
+  vertical-align: middle;
+}
+.deck-next-link {
+  margin-right: 2%;
+}
+.deck-prev-link {
+  margin-left: 2%;
+}

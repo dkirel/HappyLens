@@ -1,0 +1,18 @@
+html,
+body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+}
+.grid {
+  top: 15%;
+  margin-left: 5%;
+  margin-right: 5%;
+}
+.grid-item {
+  margin: 0 auto;
+}
+.fit-box {
+  margin: 0;
+  height: auto;
+}

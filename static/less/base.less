@@ -1,15 +1,19 @@
+// @import "/static/lib/lesshat/buildlesshat.less"
 @import "color_palette.less";
-
-/* Document properties */
-
 
 /* Main title */
 
 #main-title {
-    padding: 10px;
+    padding: 15px;
     font-size: 20px;
     font-weight: bold;
     float: left;
+
+    &:hover {
+        text-decoration: none;
+        background: none;
+        background-color: none;
+    }
 }
 
 
@@ -50,9 +54,26 @@
             }
 
             ul {
+                padding: 5px;
+                min-width: 0;
+                background-color: black;
+                border-radius: 10px;
+
                 li {
+                    display: block;
+                    position: relative;
+                    margin: auto;
                     float: none;
-                    padding: 0;
+                    padding: 5px;
+
+                    a {
+                        display:block;
+                        color: white;
+                    }
+
+                    a:hover {
+                        text-decoration: underline;
+                    }
                 }
             }
 
@@ -98,5 +119,26 @@
     font-weight: 200;
     display: block;
     text-decoration: none;
+
+    &:hover {
+        color: white;
+        text-decoration: none;
+    }
+}
+
+/* Navigation Arrows */
+
+.deck-prev-link,
+.deck-next-link {
+    display: block;
+}
+
+
+/* Mixin */
+
+.border-radius (@radius: 5px) {
+	-webkit-border-radius: @radius;
+	-moz-border-radius: @radius;
+	border-radius: @radius;
 }
 

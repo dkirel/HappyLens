@@ -1,0 +1,14 @@
+html,
+body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+}
+.grid-item {
+  width: 100%;
+  height: auto;
+}
+.fit-box {
+  height: 100%;
+  width: auto;
+}

@@ -1,0 +1,21 @@
+html,
+body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+}
+.grid {
+  top: 15%;
+}
+.grid-item {
+  display: block;
+}
+.grid-item image {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.fit-box {
+  height: 100%;
+  width: auto;
+}

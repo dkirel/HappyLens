@@ -1,0 +1,126 @@
+/* Color Palette */
+/* Main title */
+#main-title {
+  padding: 15px;
+  font-size: 20px;
+  font-weight: bold;
+  float: left;
+}
+#main-title:hover {
+  text-decoration: none;
+  background: none;
+  background-color: none;
+}
+/* Main navigation bar */
+#main-nav {
+  float: right;
+}
+#main-nav ul {
+  list-style-type: none;
+  margin: 0 0 0 0;
+  padding-right: 10px;
+  float: right;
+}
+#main-nav ul li {
+  padding: 15px;
+  float: left;
+  display: inline;
+  font-size: 16px;
+  font-family: "Trebuchet MS", Helvetica, sans-serif;
+}
+#main-nav ul li:hover {
+  background: none;
+}
+#main-nav ul li a {
+  padding: 0;
+  display: block;
+  text-decoration: none;
+  background: none;
+  background-color: none;
+}
+#main-nav ul li a:hover {
+  background: none;
+  background-color: none;
+}
+#main-nav ul li ul {
+  padding: 5px;
+  min-width: 0;
+  background-color: black;
+  border-radius: 10px;
+}
+#main-nav ul li ul li {
+  display: block;
+  position: relative;
+  margin: auto;
+  float: none;
+  padding: 5px;
+}
+#main-nav ul li ul li a {
+  display: block;
+  color: white;
+}
+#main-nav ul li ul li a:hover {
+  text-decoration: underline;
+}
+#main-nav ul li .open > a:hover {
+  background: black;
+}
+/* Dropdown caret */
+.side-by-side {
+  display: inline-block;
+}
+.dropdown-caret {
+  position: absolute !important;
+  top: 15px;
+  right: 0;
+}
+#project-menu {
+  padding-right: 20px;
+}
+/* Project tag */
+.project_tag {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  margin: 0 0 0 0;
+  padding: 5px;
+  background-color: black;
+  color: white;
+  font-family: "Raleway";
+  font-style: normal;
+  font-size: 150%;
+  font-weight: 200;
+  display: block;
+  text-decoration: none;
+}
+/* Navigation arrows */
+.navigation-arrow {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  padding: 5px;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+}
+.left-arrow {
+  left: 0;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  padding: 5px;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+}
+.right-arrow {
+  left: 0;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  padding: 5px;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+}
+/* Mixin */
