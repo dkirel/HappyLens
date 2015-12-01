@@ -6,7 +6,6 @@ from . import views
 admin.autodiscover()
 
 urlpatterns = patterns(
-    url(r'', views.index, name='index'),
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^blog/', include('blog.urls'))
+    url(r'^', include('blog.urls'))
 )

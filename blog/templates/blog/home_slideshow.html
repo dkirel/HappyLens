@@ -32,7 +32,7 @@
         {% for pic in photos %}
             <section class="slide" style="padding: 0; z-index: -1" id="{{ pic.image_name }}">
                 <image class="fill-box" src="{{ pic.image_path }}">
-                <a class="project_tag" style="z-index: 3; color: white;" href="/blog/project/{{ pic.project }}">Project / {{pic.project}}</a>
+                <a class="project_tag" style="z-index: 3; color: white;" href="/project/{{ pic.project }}">Project / {{pic.project}}</a>
              </section>
         {% endfor %}
 

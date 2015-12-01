@@ -5,7 +5,7 @@ from . import views
 
 urlpatterns = [
     #Browse projects
-    url(r'index$', views.home, name='home'),
+    url(r'^$', views.home, name='home'),
     url(r'project/(?P<project>[\w|\W]+)$', views.browse_project, name='browse-project'),
 
     #Post admin
