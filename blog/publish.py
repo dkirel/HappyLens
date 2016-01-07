@@ -1,7 +1,7 @@
 import os
 import re
 
-from .models import Photo, Post
+from .models import Photo
 
 def generate_photo(file_path):
     photo_path, width, height = image_utils.fit_and_save(file_path)

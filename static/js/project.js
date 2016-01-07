@@ -34,6 +34,7 @@ $(document).ready(function(){
         jQuery.fx.off = true;
         $.deck('go', $(this).attr('id'));
         $('#toggle-visibility').show();
+        $('.grid').hide();
         jQuery.fx.off = false;
 
     });
@@ -41,6 +42,7 @@ $(document).ready(function(){
     //Hide deck
     $(".exit-deck").click(function() {
         $('#toggle-visibility').hide();
+        $('.grid').show();
     });
 
 

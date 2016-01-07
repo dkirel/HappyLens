@@ -2,14 +2,13 @@ import datetime
 import random
 import string
 import bcrypt
+import os
 
-from mongoengine import *
 from django.db import models
-from django.contrib import admin
 from django.conf import settings
-from django_mongodb_engine.storage import GridFSStorage
-
-gridfs_storage = GridFSStorage()
+from django.contrib import admin
+from django import forms
+from djangotoolbox.fields import EmbeddedModelField, ListField
 
 SOURCES = (('du', 'Direct Upload'),
            ('tu', 'Tumblr Post'),
@@ -17,17 +16,51 @@ SOURCES = (('du', 'Direct Upload'),
            ('ig', 'Instagram'),
            ('fb', 'Facebook'))
 
-class Project(Document):
-    name = StringField(required=True)
-    description = StringField()
+def get_image_path(self, other_field):
+    return 'uploads/' + self.project.replace(' ', '_').lower() + '/' + os.path.basename(self.image_name)
 
-class Photo(Document):
-    image_name = StringField(required=True)
-    image_path = StringField(required=True)
-    project = StringField(required=True)
-    thumbnail_path = StringField()
-    width = IntField()
-    height = IntField()
+class Profile(models.Model):
+    name = models.CharField(blank=False, max_length=100)
+    photo = models.ImageField(blank=False, max_length=50)
+    personal_info = models.CharField(blank=False, max_length=1000)
+
+    def __unicode__(self):
+       return self.name
+
+class ProfileForm(forms.ModelForm):
+    personal_info = forms.CharField(required=True, widget=forms.Textarea, max_length=1000)
+    class Meta:
+        model = Profile
+
+class ProfileAdmin(admin.ModelAdmin):
+    form = ProfileForm
+
+
+class Project(models.Model):
+    name = models.CharField(blank=False, max_length=100)
+    description = models.CharField(blank=True, max_length=500)
+
+    def __unicode__(self):
+       return self.name
+
+class ProjectForm(forms.ModelForm):
+    description = forms.CharField(required=False, widget=forms.Textarea, max_length=1000)
+    class Meta:
+        model = Project
+
+class ProjectAdmin(admin.ModelAdmin):
+    form = ProjectForm
+
+
+class Photo(models.Model):
+    image_name = models.CharField(blank=False, max_length=300)
+    project = models.CharField(blank=False, choices=((p.name, p.name) for p in Project.objects.all()), max_length=100)
+    file = models.ImageField(blank=False, upload_to=get_image_path)
+    thumbnail_path = models.CharField(max_length=500, editable=False)
+    project_cover = models.BooleanField()
+
+    def __unicode__(self):
+       return self.project + '/' + self.image_name
 
     def to_json(self):
         return {
@@ -38,15 +71,15 @@ class Photo(Document):
             'height': self.height
         }
 
-
-class Post(Document):
-    slug = StringField(required=True)
-    title = StringField(required=True)
-    project = StringField(required=True)
-    timestamp = DateTimeField(required=True, default=datetime.datetime.now)
-    photos = ListField(ReferenceField(Photo), required=True)
-    tags = ListField(StringField())
-    source = StringField(required=True, choices=SOURCES)
+"""
+class Post(models.Model):
+    slug = models.CharField(blank=False, max_length=200)
+    title = models.CharField(blank=False, max_length=200)
+    project = models.CharField(blank=False, max_length=200)
+    timestamp = models.DateTimeField(blank=False, default=datetime.datetime.now)
+    photos = EmbeddedModelField('Photo', blank=False)
+    tags = ListField(models.CharField())
+    source = models.CharField(blank=False, choices=SOURCES, max_length=50)
     meta = {
         'indexes': [
             {'fields': ['slug'], 'unique': True, 'types': False}
@@ -63,5 +96,9 @@ class Post(Document):
         if hasattr(self, 'tags'):
             d['tags'] = self.tags
         return d
+"""
 
+admin.site.register(Profile, ProfileAdmin)
+admin.site.register(Project, ProjectAdmin)
+admin.site.register(Photo)
 

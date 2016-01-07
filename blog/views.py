@@ -2,23 +2,26 @@ import os
 import string
 
 from django.shortcuts import render, redirect
-from django.http import HttpResponseRedirect
+from django.http import HttpResponse
+from django.core.mail import send_mail, mail_admins, BadHeaderError
+from django.contrib import messages
+from django.contrib.auth.models import User
+from django.template import RequestContext
 
-from django.conf import settings
-from .forms import ProjectForm, PostForm
-from blog.models import Project, Post, Photo
-from .publish import *
+from blog.forms import ContactForm
+from blog.models import Profile, Project, Photo
+from blog.forms import ContactForm
 
 
 def home(request):
     """Landing page of the blog which allows users to browse projects"""
 
-    projects = Project.objects().order_by('name')
+    projects = Project.objects.all().order_by('name')
     photos = []
 
     for p in projects:
-        pic = Photo.objects(project=p.name).first()
-        photos.append(pic)
+        pics = Photo.objects.filter(project=p.name).order_by('-project_cover', 'image_name')
+        photos.append(pics[0])
 
     return render(request, 'blog/home_slideshow.html', locals())
 
@@ -26,14 +29,50 @@ def home(request):
 def browse_project(request, project):
     """Photo browsing page of a particular project"""
 
-    projects = Project.objects().order_by('name')
-    photos = Photo.objects(project=project)
+    projects = Project.objects.all().order_by('name')
+    photos = Photo.objects.filter(project=project)
 
     return render(request, 'blog/project_slideshow.html', locals())
 
 
+def about(request):
+    """Page containing the admin profile info"""
+
+    projects = Project.objects.all().order_by('name')
+    profiles = Profile.objects.all().order_by('name')
+
+    return render(request, 'blog/about.html', locals())
+
+def contact(request):
+    """Page containing a contact form for visitors trying to contact admins"""
+
+    projects = Project.objects.all().order_by('name')
+
+    if request.method == 'GET':
+        form = ContactForm()
+    else:
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            name = form.cleaned_data['name']
+            subject = form.cleaned_data['subject']
+            from_email = form.cleaned_data['email']
+            message = form.cleaned_data['message']
+
+            subject = [subject, "No Subject"][subject == ""]
+            final_message = "Sender's name: {name}\nSender's email: {from_email}\nSubject: {subject}\n\n\nMessage:\n\n{message}\n\n".format(**locals())
+
+            try:
+                mail_admins("Contact form request", final_message)
+                messages.success(request, "Your message was sent successfully! We'll get back to you as soon as we get the chance.")
+                form = ContactForm()
+            except BadHeaderError:
+                return HttpResponse('Invalid header found.')
+
+    return render(request, "blog/contact.html", locals(), context_instance=RequestContext(request))
+
+
+"""
 def post_photo(request):
-    """Area to post a photo"""
 
     project_form = ProjectForm()
     post_form = PostForm()
@@ -101,3 +140,4 @@ def post_photo(request):
 
     return render(request, 'blog/post_photo.html', locals())
 
+"""

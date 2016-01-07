@@ -56,7 +56,7 @@
     {% block body %}
     {% block navbar %}
 
-        <a id="main-title" href="/">SENSEI COLLECTION</a>
+        <a id="main-title" href="/">YogaDuOM</a>
 
         <!--Main navigation bar-->
         <div class="collapse navbar-collapse" id="main-nav" data-hover="dropdown" data-animations="fadeIn fadeIn fadeIn fadeIn">
@@ -67,12 +67,12 @@
 
                     <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
                         {% for p in projects %}
-                            <li><a href="/project/{{ p.name }}">{{ p.name }}</a></li>
+                            <li><a href="/blog/project/{{ p.name }}">{{ p.name }}</a></li>
                         {% endfor %}
                     </ul>
                 </li>
-            	<li><a href="#" style="padding-left: 10px">About</a></li>
-            	<li><a href="#">Contact</a></li>
+            	<li><a href="/blog/about" style="padding-left: 10px">About</a></li>
+            	<li><a href="/blog/contact">Contact</a></li>
             	<li><a href="#"></a></li>
             	<li><a href="#"></a></li>
             	<li><a href="#"></a></li>

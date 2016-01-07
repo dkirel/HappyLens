@@ -9,7 +9,4 @@ class LoginForm(forms.Form):
     password = forms.CharField(label='Password', widget=forms.PasswordInput(), max_length=200, required=True)
     remember_me = forms.BooleanField(label='Remember Me')
 
-class PostForm(forms.Form):
-    title = forms.CharField(required=True)
-
 

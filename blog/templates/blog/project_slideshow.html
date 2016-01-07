@@ -31,7 +31,7 @@
         <div class="deck-container">
             {% for pic in photos %}
                 <section class="slide" id="{{ pic.image_name }}">
-                    <image class="slide-image" src="{{ pic.image_path }}">
+                    <image class="slide-image" src="{{ pic.file.url }}">
                  </section>
             {% endfor %}
         </div>
@@ -56,7 +56,7 @@
     <div class="grid">
         {% for pic in photos %}
             <div class="grid-item" id="{{ pic.image_name }}">
-                <image class="fit-box" style="cursor: pointer;" src="{{ pic.image_path }}">
+                <image class="fit-box" style="cursor: pointer;" src="{{ pic.file.url }}">
              </div>
         {% endfor %}
     </div>

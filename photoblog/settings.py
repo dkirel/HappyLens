@@ -12,8 +12,6 @@ https://docs.djangoproject.com/en/1.6/ref/settings/
 import os
 import sys
 
-from mongoengine import register_connection
-
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 project_main = u'/home/dk2459/photoblog/photoblog'
@@ -23,20 +21,6 @@ if project_main not in sys.path:
 from settings_secret import *
 
 
-TEMPLATE_DIRS = (
-    BASE_DIR + '/templates/',
-    BASE_DIR + '/acct/templates/',
-    BASE_DIR + '/blog/templates/',
-)
-
-# List of callables that know how to import templates from various sources.
-TEMPLATE_LOADERS = (
-    'django.template.loaders.filesystem.Loader',
-    'django.template.loaders.app_directories.Loader',
-#     'django.template.loaders.eggs.Loader',
-)
-
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.6/howto/deployment/checklist/
 
@@ -44,8 +28,6 @@ TEMPLATE_LOADERS = (
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-
-TEMPLATE_DEBUG = True
 
 ALLOWED_HOSTS = []
 
@@ -59,6 +41,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'djangotoolbox',
     'bootstrapform',
     'crispy_forms',
     'compressor',
@@ -74,12 +57,37 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
-CONTEXT_PROCESSORS = (
-    'django.core.context_processors.csrf'
-)
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [BASE_DIR + '/templates/',
+                BASE_DIR + '/acct/templates/',
+                BASE_DIR + '/blog/templates/',
+            ],
+        'APP_DIRS': True,
+        'OPTIONS': {
+            'DEBUG': True,
+            'CONTEXT_PROCESSORS': [
+                'django.core.context_processors.csrf',
+                'django.contrib.auth.context_processors.auth',
+                'django.template.context_processors.debug',
+                'django.template.context_processors.i18n',
+                'django.template.context_processors.media',
+                'django.template.context_processors.static',
+                'django.template.context_processors.tz',
+                'django.contrib.messages.context_processors.messages'
+            ],
+            'LOADERS': [
+                'django.template.loaders.filesystem.Loader',
+                'django.template.loaders.app_directories.Loader',
+                #'django.template.loaders.eggs.Loader',
+
+            ]
+        },
+    },
+]
 
 ROOT_URLCONF = 'photoblog.urls'
-
 WSGI_APPLICATION = 'photoblog.wsgi.application'
 
 
@@ -106,13 +114,9 @@ COMPRESS_PRECOMPILERS = (
 # https://docs.djangoproject.com/en/1.6/topics/i18n/
 
 LANGUAGE_CODE = 'en-us'
-
 TIME_ZONE = 'UTC'
-
 USE_I18N = True
-
 USE_L10N = True
-
 USE_TZ = True
 
 
@@ -120,7 +124,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.6/howto/static-files/
 
 STATIC_URL = '/static/'
-
+MEDIA_URL = '/media/'
 STATIC_ROOT = u'/home/dk2459/photoblog/static'
-#COMPRESS_ROOT = u'/home/dk2459/photoblog/static/compress'
+MEDIA_ROOT = u'/home/dk2459/photoblog/media/'
+
 

@@ -1,0 +1,21 @@
+/* Color Palette */
+@import url(http://fonts.googleapis.com/css?family=Montserrat:400,700);
+section {
+  position: absolute;
+  display: inline-block;
+  padding: 0;
+  margin: 0;
+  /* to make the div center align to the browser */
+  top: 70px;
+}
+section h {
+  text-align: center;
+  font-size: 20px;
+}
+section image {
+  width: 30%;
+  max-height: 50%;
+}
+section p {
+  padding: 0 10px 0 10px;
+}

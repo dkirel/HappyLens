@@ -17,7 +17,9 @@ def log_in(request):
         user = User.objects(email=data['email'])
 
         if user is not None and user.authenticate(password=data['password']):
-            return HttpResponseRedirect('/')
+            return HttpResponseRedirect('/blog/post-photo')
+
+        login_message = 'The username and/or password supplied did not match any of our records'
 
     return render(request, 'acct/authenticate.html', locals())
 
