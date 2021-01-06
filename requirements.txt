@@ -13,7 +13,7 @@ Bottleneck==0.8.0
 bottlenose==0.6.2
 BTrees==4.1.4
 cairocffi==0.7.1
-CairoSVG==1.0.15
+CairoSVG==2.5.1
 cffi==1.1.2
 Chameleon==2.16
 chardet==2.3.0
