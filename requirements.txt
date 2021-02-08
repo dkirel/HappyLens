@@ -89,7 +89,7 @@ greenlet==0.4.7
 grokcore.component==2.6
 html5lib==1.0b6
 http-parser==0.8.3
-httplib2==0.9
+httplib2==0.19.0
 idna==2.0
 IMAPClient==0.13
 infinity==1.3
