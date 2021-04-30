@@ -192,7 +192,7 @@ requests==2.3.0
 requests-cache==0.4.4
 requests-oauthlib==0.5.0
 rpy2==2.5.2
-rsa==3.2
+rsa==4.7
 ruffus==2.5
 scikit-image==0.10.1
 scikit-learn==0.15.2
