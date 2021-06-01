@@ -241,7 +241,7 @@ tzlocal==1.0
 unattended-upgrades==0.1
 Unidecode==0.4.16
 uritemplate==0.6
-urllib3==1.10.4
+urllib3==1.26.5
 urwid==1.2.1
 validators==0.7
 venusian==0.9
