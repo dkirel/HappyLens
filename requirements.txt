@@ -138,7 +138,7 @@ pep8==1.5.7
 persistent==4.1.1
 pexpect==3.3
 pilkit==1.1.13
-Pillow==2.5.1
+Pillow==9.0.1
 pillowcase==2.0.0
 prettytable==0.7.2
 psutil==2.1.1
