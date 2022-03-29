@@ -128,7 +128,7 @@ oauth2client==1.5.1
 oauthlib==1.0.3
 openpyxl==1.8.6
 pandas==0.14.1
-paramiko==1.15.2
+paramiko==2.10.1
 Paste==2.0.2
 PasteDeploy==1.5.2
 pbr==1.8.1
