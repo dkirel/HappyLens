@@ -126,7 +126,7 @@ numexpr==2.4
 numpy==1.8.1
 oauth2client==1.5.1
 oauthlib==1.0.3
-openpyxl==1.8.6
+openpyxl==2.4.2
 pandas==0.14.1
 paramiko==1.15.2
 Paste==2.0.2
