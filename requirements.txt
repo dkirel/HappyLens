@@ -102,7 +102,7 @@ jellyfish==0.5.0
 Jinja2==2.7.3
 jsmin==2.1.4
 jsonschema==2.5.1
-jupyterhub==0.2.0
+jupyterhub==1.5.0
 Logbook==0.11.2
 lxml==3.3.5
 Mako==1.0.0
