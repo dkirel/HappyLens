@@ -255,7 +255,7 @@ webassets==0.10.1
 WebOb==1.4
 websocket-client==0.32.0
 Werkzeug==0.9.6
-wheel==0.26.0
+wheel==0.38.1
 wheezy.caching==0.1.112
 wheezy.core==0.1.140
 wheezy.html==0.1.145
